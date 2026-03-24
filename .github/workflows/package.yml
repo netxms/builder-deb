@@ -1,0 +1,43 @@
+name: Package and push to ghcr.io
+
+on:
+  push:
+    branches:
+      - "master"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - { tag: trixie,   base_image: "debian:trixie",   distro_type: debian, distro_version: trixie }
+          - { tag: bookworm, base_image: "debian:bookworm", distro_type: debian, distro_version: bookworm }
+          - { tag: bullseye, base_image: "debian:bullseye", distro_type: debian, distro_version: bullseye }
+          - { tag: noble,    base_image: "ubuntu:noble",    distro_type: ubuntu, distro_version: noble }
+          - { tag: jammy,    base_image: "ubuntu:jammy",    distro_type: ubuntu, distro_version: jammy }
+          - { tag: focal,    base_image: "ubuntu:focal",    distro_type: ubuntu, distro_version: focal }
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          build-args: |
+            BASE_IMAGE=${{ matrix.base_image }}
+            DISTRO_TYPE=${{ matrix.distro_type }}
+            DISTRO_VERSION=${{ matrix.distro_version }}
+          tags: ghcr.io/${{ github.repository_owner }}/builder-deb:${{ matrix.tag }}
