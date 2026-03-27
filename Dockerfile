@@ -39,7 +39,8 @@ RUN set -ex && \
         echo openjdk-11-jdk-headless; \
     fi) && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        dpkg-dev debhelper devscripts build-essential \
+        dpkg-dev debhelper devscripts build-essential equivs \
+        flex bison \
         chrpath perl lintian fakeroot $JAVA_PKG && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
