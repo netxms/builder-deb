@@ -40,7 +40,7 @@ RUN set -ex && \
     fi) && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         dpkg-dev debhelper devscripts build-essential equivs \
-        flex bison \
+        flex bison lsb-release \
         chrpath perl lintian fakeroot python3 python3-debian $JAVA_PKG && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
