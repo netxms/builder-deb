@@ -15,6 +15,7 @@ Published to `ghcr.io/netxms/builder-deb`:
 | `trixie` | `debian:trixie` |
 | `bookworm` | `debian:bookworm` |
 | `bullseye` | `debian:bullseye` |
+| `resolute` | `ubuntu:resolute` |
 | `noble` | `ubuntu:noble` |
 | `jammy` | `ubuntu:jammy` |
 | `focal` | `ubuntu:focal` |
@@ -47,4 +48,4 @@ GitHub Actions workflow (`.github/workflows/package.yml`) builds all 6 images in
 ## Distribution Targets
 
 - Debian: trixie, bookworm, bullseye
-- Ubuntu: noble, jammy, focal
+- Ubuntu: resolute, noble, jammy, focal

@@ -14,6 +14,7 @@ jobs:
           - { tag: trixie,   base_image: "debian:trixie",   distro_type: debian, distro_version: trixie }
           - { tag: bookworm, base_image: "debian:bookworm", distro_type: debian, distro_version: bookworm }
           - { tag: bullseye, base_image: "debian:bullseye", distro_type: debian, distro_version: bullseye }
+          - { tag: resolute, base_image: "ubuntu:resolute", distro_type: ubuntu, distro_version: resolute }
           - { tag: noble,    base_image: "ubuntu:noble",    distro_type: ubuntu, distro_version: noble }
           - { tag: jammy,    base_image: "ubuntu:jammy",    distro_type: ubuntu, distro_version: jammy }
           - { tag: focal,    base_image: "ubuntu:focal",    distro_type: ubuntu, distro_version: focal }
