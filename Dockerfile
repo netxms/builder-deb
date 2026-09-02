@@ -25,7 +25,7 @@ RUN set -ex && \
     apt-get update && \
     apt-get install -y --no-install-recommends ca-certificates curl gnupg && \
     install -d /etc/apt/keyrings && \
-    curl -fsSL "https://packages.netxms.org/${DISTRO_TYPE}/keyring.gpg" \
+    curl -fsSL "https://packages.netxms.org/netxms-keyring.gpg" \
         -o /etc/apt/keyrings/netxms.gpg && \
     printf 'deb [signed-by=/etc/apt/keyrings/netxms.gpg] https://packages.netxms.org/%s/ %s main\ndeb [signed-by=/etc/apt/keyrings/netxms.gpg] https://packages.netxms.org/devel/%s/ %s main\n' \
         "$DISTRO_TYPE" "$DISTRO_VERSION" "$DISTRO_TYPE" "$DISTRO_VERSION" \
